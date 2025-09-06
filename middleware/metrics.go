@@ -15,18 +15,18 @@ type Metrics struct {
 	mu sync.RWMutex // protects all the maps below from concurrent access chaos
 
 	// tool metrics - how are our tools performing?
-	ToolCalls     map[string]int64        // how many times each tool was called
-	ToolErrors    map[string]int64        // how many times each tool failed
+	ToolCalls     map[string]int64         // how many times each tool was called
+	ToolErrors    map[string]int64         // how many times each tool failed
 	ToolDurations map[string]time.Duration // total time spent in each tool
 
 	// resource metrics - how's our data access doing?
-	ResourceReads     map[string]int64        // how many times each resource was read
-	ResourceErrors    map[string]int64        // how many read failures we've had
+	ResourceReads     map[string]int64         // how many times each resource was read
+	ResourceErrors    map[string]int64         // how many read failures we've had
 	ResourceDurations map[string]time.Duration // time spent reading resources
 
 	// prompt metrics - are our conversation templates popular?
-	PromptGets      map[string]int64        // how many times each prompt was requested
-	PromptErrors    map[string]int64        // prompt generation failures (shouldn't be many!)
+	PromptGets      map[string]int64         // how many times each prompt was requested
+	PromptErrors    map[string]int64         // prompt generation failures (shouldn't be many!)
 	PromptDurations map[string]time.Duration // time spent generating prompts
 }
 
@@ -133,14 +133,14 @@ func (m *Metrics) GetStats() map[string]interface{} {
 
 	// return everything we've collected - tools, resources, and prompts
 	return map[string]interface{}{
-		"tool_calls":         m.ToolCalls,      // how busy are our tools?
-		"tool_errors":        m.ToolErrors,     // how reliable are they?
-		"tool_durations":     m.ToolDurations,  // how fast are they?
-		"resource_reads":     m.ResourceReads,  // how much data are we serving?
-		"resource_errors":    m.ResourceErrors, // any file access problems?
+		"tool_calls":         m.ToolCalls,         // how busy are our tools?
+		"tool_errors":        m.ToolErrors,        // how reliable are they?
+		"tool_durations":     m.ToolDurations,     // how fast are they?
+		"resource_reads":     m.ResourceReads,     // how much data are we serving?
+		"resource_errors":    m.ResourceErrors,    // any file access problems?
 		"resource_durations": m.ResourceDurations, // how fast is our I/O?
-		"prompt_gets":        m.PromptGets,     // are our templates popular?
-		"prompt_errors":      m.PromptErrors,   // any template generation issues?
-		"prompt_durations":   m.PromptDurations, // how fast can we generate templates?
+		"prompt_gets":        m.PromptGets,        // are our templates popular?
+		"prompt_errors":      m.PromptErrors,      // any template generation issues?
+		"prompt_durations":   m.PromptDurations,   // how fast can we generate templates?
 	}
 }

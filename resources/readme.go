@@ -24,8 +24,8 @@ func NewReadmeResource() *ReadmeResource {
 // this is like putting a label on a library book
 func (r *ReadmeResource) GetResource() mcp.Resource {
 	return mcp.NewResource(
-		"file://README.md",           // unique URI - like a library catalog number
-		"Local README",               // human-readable description
+		"file://README.md",             // unique URI - like a library catalog number
+		"Local README",                 // human-readable description
 		mcp.WithMIMEType("text/plain")) // tell clients what kind of content this is
 }
 
@@ -40,13 +40,13 @@ func (r *ReadmeResource) GetHandler() server.ResourceHandlerFunc {
 			// if file doesn't exist or can't be read, let the caller know
 			return nil, err
 		}
-		
+
 		// package up the file contents in the format MCP expects
 		return []mcp.ResourceContents{
 			mcp.TextResourceContents{
-				URI:      "docs://readme",    // internal URI for this content
-				MIMEType: "text/markdown",    // what kind of content this actually is
-				Text:     string(b),          // the actual file contents
+				URI:      "docs://readme", // internal URI for this content
+				MIMEType: "text/markdown", // what kind of content this actually is
+				Text:     string(b),       // the actual file contents
 			},
 		}, nil
 	}

@@ -43,10 +43,10 @@ func (p *GreetingPrompt) GetHandler() server.PromptHandlerFunc {
 
 		// create a structured prompt that AI can use as a conversation starter
 		return mcp.NewGetPromptResult(
-			"A friendly greeting",                    // description of what we're returning
+			"A friendly greeting", // description of what we're returning
 			[]mcp.PromptMessage{
 				mcp.NewPromptMessage(
-					mcp.RoleAssistant,                   // this message comes from the AI assistant
+					mcp.RoleAssistant, // this message comes from the AI assistant
 					mcp.NewTextContent(fmt.Sprintf("Hello, %s! How can I help you today?", name)),
 				),
 			},

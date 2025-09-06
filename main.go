@@ -28,21 +28,21 @@ func main() {
 
 	// build our MCP server - this is the foundation everything sits on
 	srv := server.NewMCPServer(
-		"hello-mcp",                      // server name - keep it friendly!
-		"0.1.0",                         // version - we're just getting started
+		"hello-mcp",                        // server name - keep it friendly!
+		"0.1.0",                            // version - we're just getting started
 		server.WithToolCapabilities(false), // we'll handle tool capabilities ourselves
 		server.WithLogging(),               // enable the SDK's internal logging too
 	)
 
 	// time to set up the three-ring circus of MCP capabilities!
 	log.Println("Registering tools, resources, and prompts...")
-	
+
 	// tools: let AI DO things (like our friendly echo)
 	registerTools(srv, tools.NewEchoTool())
-	
+
 	// resources: give AI access to data (like our README file)
 	registerResources(srv, resources.NewReadmeResource())
-	
+
 	// prompts: provide AI with conversation templates
 	registerPrompts(srv, prompts.NewGreetingPrompt())
 
@@ -58,7 +58,7 @@ func main() {
 // think of this as putting on safety gear before using power tools!
 func registerTools(srv *server.MCPServer, tools ...tools.Tool) {
 	for _, tool := range tools {
-		toolDef := tool.GetTool()   // get the tool's definition (name, params, etc.)
+		toolDef := tool.GetTool()    // get the tool's definition (name, params, etc.)
 		handler := tool.GetHandler() // get the actual function that does the work
 
 		// wrap with middleware: logging, metrics, panic recovery

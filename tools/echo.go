@@ -26,8 +26,8 @@ func (t *EchoTool) GetTool() mcp.Tool {
 	return mcp.NewTool("echo",
 		mcp.WithDescription("Echo back the provided text"), // be descriptive - AI needs to know what we do!
 		mcp.WithString("name",
-			mcp.Required(),                                    // this parameter is mandatory - no anonymous greetings!
-			mcp.Description("Name of the person to greet"),   // help text for the AI
+			mcp.Required(), // this parameter is mandatory - no anonymous greetings!
+			mcp.Description("Name of the person to greet"), // help text for the AI
 		),
 	)
 }
@@ -42,7 +42,7 @@ func (t *EchoTool) GetHandler() server.ToolHandlerFunc {
 			// return a nice error message instead of crashing
 			return mcp.NewToolResultError(err.Error()), nil
 		}
-		
+
 		// do our incredibly sophisticated work: say hello!
 		return mcp.NewToolResultText(fmt.Sprintf("Hello, %s!", name)), nil
 	}
